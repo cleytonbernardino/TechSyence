@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Backend\TechSyence.Application\TechSyence.Application.csproj" />
+    <ProjectReference Include="..\..\src\Backend\TechSyence.Infrastructure\TechSyence.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Shared\TechSyence.Communiction\TechSyence.Communiction.csproj" />
+  </ItemGroup>
+
+</Project>
