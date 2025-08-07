@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Shared\TechSyence.Communiction\TechSyence.Communiction.csproj" />
     <ProjectReference Include="..\..\Shared\TechSyence.Exceptions\TechSyence.Exceptions.csproj" />
     <ProjectReference Include="..\TechSyence.Domain\TechSyence.Domain.csproj" />
