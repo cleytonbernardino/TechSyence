@@ -1,4 +1,5 @@
 using TechSyence.API.Filter;
+using TechSyence.API.Middleware;
 using TechSyence.API.Token;
 using TechSyence.Application;
 using TechSyence.Domain.Security.Token;
@@ -31,6 +32,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<CultureMiddleware>();
 
 app.UseHttpsRedirection();
 
