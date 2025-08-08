@@ -17,12 +17,8 @@ public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
         {
             RuleFor(user => user.Email).EmailAddress().WithMessage(ResourceMessagesException.INVALID_EMAIL);
         });
-        When(user => user.Phone.Length != 11, () =>
-        {
-            RuleFor(user => 
-                user.Phone.Replace(" ", "").Replace("(", "").Replace(")", ""))
-                .Length(11)
-                .WithMessage(ResourceMessagesException.PHONE_NOT_VALID);
-        });
+        When(user => !string.IsNullOrEmpty(user.Phone), () =>
+            RuleFor(user => user.Phone).Matches(@"^\(?\d{2}\)?\s?9\d{4}-?\d{4}$").WithMessage(ResourceMessagesException.PHONE_NOT_VALID)
+        );
     }
 }

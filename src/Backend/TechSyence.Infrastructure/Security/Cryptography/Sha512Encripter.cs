@@ -4,7 +4,7 @@ using TechSyence.Domain.Security.Cryptography;
 
 namespace TechSyence.Infrastructure.Security.Cryptography;
 
-internal class Sha512Encripter(
+public class Sha512Encripter(
     string salt
     ) : IPasswordEncripter
 {

@@ -11,7 +11,7 @@ using Entity = TechSyence.Domain.Entities;
 
 namespace TechSyence.Application.UseCases.User.Register;
 
-internal class RegisterUserUseCase(
+public class RegisterUserUseCase(
     IUserReadOnlyRepository readOnlyRepository,
     IUserWriteOnlyRepository writeOnlyRepository,
     IPasswordEncripter encripter,

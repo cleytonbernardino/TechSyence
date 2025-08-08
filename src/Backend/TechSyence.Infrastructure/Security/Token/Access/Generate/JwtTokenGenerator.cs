@@ -6,7 +6,7 @@ using TechSyence.Infrastructure.Security.Token.Access;
 
 namespace TechSyence.Infrastructure.Security.Token.Access.Generate;
 
-internal class JwtTokenGenerator(
+public class JwtTokenGenerator(
     uint expirationTimeMinutes,
     string signingKey
     ) : JwtTokenHandle, IAccessTokenGenerator

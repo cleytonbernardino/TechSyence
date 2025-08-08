@@ -3,7 +3,7 @@ using System.Text;
 
 namespace TechSyence.Infrastructure.Security.Token.Access;
 
-internal abstract class JwtTokenHandle
+public abstract class JwtTokenHandle
 {
     protected static SymmetricSecurityKey SecurityKey(string signingKey)
     {
