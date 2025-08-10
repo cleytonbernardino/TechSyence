@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TechSyence.Domain.Entities;
 using TechSyence.Domain.Repositories.User;
+using TechSyence.Infrastructure.Security.Cryptography;
 
 namespace TechSyence.Infrastructure.DataAccess.Repositories;
 
@@ -14,7 +15,25 @@ internal class UserRepository(
     {
         return await _dbContext
             .Users
+            .AsNoTracking()
             .AnyAsync(user => user.Email == email && user.Active == true);
+    }
+
+    public async Task<User?> GetUserByEmailAndPassword(string email, string password)
+    {
+        var user = await _dbContext
+            .Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(user => user.Email == email && user.Active == true);
+
+        if (user is not null)
+        {
+            bool isValid = new Argon2Encripter().VerifyPassword(password: password, hashedPassword: user.Password);
+            if (isValid == false)
+                return null;
+        }
+
+        return user;
     }
 
     public async Task RegisterUser(User user) => await _dbContext.Users.AddAsync(user);

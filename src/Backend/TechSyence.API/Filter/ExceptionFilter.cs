@@ -21,9 +21,14 @@ public class ExceptionFilter : IExceptionFilter
         }
     }
 
-    private void HandleProjectException(ExceptionContext context)
+    private static void HandleProjectException(ExceptionContext context)
     {
-        if (context.Exception is ErrorOnValidationException)
+        if (context.Exception is InvalidLoginException)
+        {
+            context.HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Result = new UnauthorizedObjectResult(new ResponseErrorJson(context.Exception.Message));
+        }
+        else if (context.Exception is ErrorOnValidationException)
         {
             var exception = context.Exception as ErrorOnValidationException;
             context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
@@ -31,7 +36,7 @@ public class ExceptionFilter : IExceptionFilter
         }
     }
 
-    private void ThrowUnknowException(ExceptionContext context)
+    private static void ThrowUnknowException(ExceptionContext context)
     {
 #if DEBUG
         context.Result = new ObjectResult(new ResponseErrorJson(context.Exception.Message));
