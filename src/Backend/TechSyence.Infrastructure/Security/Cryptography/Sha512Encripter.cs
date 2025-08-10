@@ -30,4 +30,10 @@ public class Sha512Encripter(
         }
         return sb.ToString();
     }
+
+    public bool VerifyPassword(string password, string hashedPassword)
+    {
+        var encriptedPassword = Encript(password);
+        return encriptedPassword == hashedPassword;
+    }
 }

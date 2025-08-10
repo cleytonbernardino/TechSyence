@@ -38,10 +38,17 @@ public static class DependencyInjectionExtension
         service.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 
+    // Sha-512, Removido devido a não ser indicado para senhas
+    // 10/08/2025
+    //private static void AddEncripter(IServiceCollection services, IConfiguration configuration)
+    //{
+    //    string passwordSalt = configuration.GetSection("Settings:Passwords:Salt").Value!;
+    //    services.AddScoped<IPasswordEncripter>(option => new Sha512Encripter(passwordSalt));
+    //}
+
     private static void AddEncripter(IServiceCollection services, IConfiguration configuration)
     {
-        string passwordSalt = configuration.GetSection("Settings:Passwords:Salt").Value!;
-        services.AddScoped<IPasswordEncripter>(option => new Sha512Encripter(passwordSalt));
+        services.AddScoped<IPasswordEncripter, Argon2Encripter>();
     }
 
     private static void AddJwtToken(IServiceCollection services, IConfiguration configuration)
