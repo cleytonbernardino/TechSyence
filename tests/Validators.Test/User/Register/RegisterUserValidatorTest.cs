@@ -1,5 +1,5 @@
 ﻿using Azure.Core;
-using CommonTestUtilities.Request;
+using CommonTestUtilities.Requests;
 using Shouldly;
 using TechSyence.Application.UseCases.User.Register;
 using TechSyence.Communiction.Requests;

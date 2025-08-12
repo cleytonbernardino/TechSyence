@@ -1,6 +1,6 @@
 ﻿using CommonTestUtilities.Cryptography;
 using CommonTestUtilities.Repositories;
-using CommonTestUtilities.Request;
+using CommonTestUtilities.Requests;
 using CommonTestUtilities.Tokens;
 using Shouldly;
 using TechSyence.Application.UseCases.User.Register;

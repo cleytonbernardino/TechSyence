@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using TechSyence.Communiction.Requests;
 
-namespace CommonTestUtilities.Request;
+namespace CommonTestUtilities.Requests;
 
 public class RequestRegisterUserJsonBuilder
 {

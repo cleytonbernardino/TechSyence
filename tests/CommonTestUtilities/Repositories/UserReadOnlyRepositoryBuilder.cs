@@ -1,5 +1,6 @@
 ﻿using Moq;
 using TechSyence.Domain.Repositories.User;
+using Entity = TechSyence.Domain.Entities;
 
 namespace CommonTestUtilities.Repositories;
 
@@ -12,5 +13,10 @@ public class UserReadOnlyRepositoryBuilder
     public void ExistActiveUserWithEmail(string email)
     {
         _mock.Setup(repository => repository.ExistActiveUserWithEmail(email)).ReturnsAsync(true);
+    }
+
+    public void GetUserByEmailAndPassword(Entity.User user)
+    {
+        _mock.Setup(repository => repository.GetUserByEmailAndPassword(user.Email, user.Password)).ReturnsAsync(user);
     }
 }

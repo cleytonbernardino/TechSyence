@@ -1,4 +1,4 @@
-﻿using CommonTestUtilities.Request;
+﻿using CommonTestUtilities.Requests;
 using Shouldly;
 using System.Globalization;
 using System.Net;
