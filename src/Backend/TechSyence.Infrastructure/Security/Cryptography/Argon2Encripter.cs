@@ -5,7 +5,7 @@ using TechSyence.Domain.Security.Cryptography;
 
 namespace TechSyence.Infrastructure.Security.Cryptography;
 
-internal class Argon2Encripter : IPasswordEncripter
+public class Argon2Encripter : IPasswordEncripter
 {
     private const int SALT_SIZE = 16; // 128 bits
     private const int HASH_SIZE = 32;
