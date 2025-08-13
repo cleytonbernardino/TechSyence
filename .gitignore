@@ -416,3 +416,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Appsetting Dev
+/src/Backend/TechSyence.API/appsettings.Development.json
