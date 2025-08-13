@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Models;
+using Serilog;
 using TechSyence.API.Filter;
 using TechSyence.API.Middleware;
 using TechSyence.API.Token;
@@ -9,12 +11,34 @@ using TechSyence.Infrastructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
+// Configure serilog
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
+
+builder.Host.UseSerilog((context, service, configuration) =>
+{
+    configuration
+    .ReadFrom.Configuration(context.Configuration)
+    .ReadFrom.Services(service);
+
+});
+
+// Add services to the container.
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(gen =>
+{
+    gen.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "TechSyence API",
+        Version = "v1",
+        Description = "Some"
+    });
+});
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
@@ -30,7 +54,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(ui =>
+    {
+        ui.SwaggerEndpoint("/swagger/v1/swagger.json", "TechSyence v1");
+    });
 }
 
 app.UseMiddleware<CultureMiddleware>();
