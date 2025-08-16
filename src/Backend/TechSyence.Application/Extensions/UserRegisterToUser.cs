@@ -1,4 +1,4 @@
-﻿using TechSyence.Communiction.Requests;
+﻿using TechSyence.Communication.Requests;
 using TechSyence.Domain.Entities;
 
 namespace TechSyence.Application.Extensions;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using TechSyence.Communiction.Responses;
+using TechSyence.Communication.Responses;
 using TechSyence.Exceptions.ExceptionsBase;
 #if !DEBUG
 using TechSyence.Exceptions;

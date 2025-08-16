@@ -1,8 +1,7 @@
-﻿using Azure.Core;
-using CommonTestUtilities.Requests;
+﻿using CommonTestUtilities.Requests;
 using Shouldly;
 using TechSyence.Application.UseCases.User.Register;
-using TechSyence.Communiction.Requests;
+using TechSyence.Communication.Requests;
 
 namespace Validators.Test.User.Register;
 

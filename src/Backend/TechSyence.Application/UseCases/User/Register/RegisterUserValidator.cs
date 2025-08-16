@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using TechSyence.Application.SharedValidators;
-using TechSyence.Communiction.Requests;
+using TechSyence.Communication.Requests;
 using TechSyence.Exceptions;
 
 namespace TechSyence.Application.UseCases.User.Register;

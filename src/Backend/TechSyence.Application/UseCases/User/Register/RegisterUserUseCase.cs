@@ -1,6 +1,6 @@
 ﻿using TechSyence.Application.Extensions;
-using TechSyence.Communiction.Requests;
-using TechSyence.Communiction.Responses;
+using TechSyence.Communication.Requests;
+using TechSyence.Communication.Responses;
 using TechSyence.Domain.Repositories;
 using TechSyence.Domain.Repositories.User;
 using TechSyence.Domain.Security.Cryptography;

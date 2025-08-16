@@ -1,4 +1,4 @@
-﻿namespace TechSyence.Communiction.Responses;
+﻿namespace TechSyence.Communication.Responses;
 
 public class ResponseErrorJson
 {

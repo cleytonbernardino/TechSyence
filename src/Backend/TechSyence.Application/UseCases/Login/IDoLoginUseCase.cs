@@ -1,5 +1,5 @@
-﻿using TechSyence.Communiction.Requests;
-using TechSyence.Communiction.Responses;
+﻿using TechSyence.Communication.Requests;
+using TechSyence.Communication.Responses;
 
 namespace TechSyence.Application.UseCases.Login;
 

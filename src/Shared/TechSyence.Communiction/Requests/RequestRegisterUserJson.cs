@@ -1,4 +1,4 @@
-﻿namespace TechSyence.Communiction.Requests;
+﻿namespace TechSyence.Communication.Requests;
 
 public class RequestRegisterUserJson
 {
