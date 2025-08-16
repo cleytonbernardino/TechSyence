@@ -1,5 +1,6 @@
 using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Diagnostics;
 using TechSyence.API.Filter;
 using TechSyence.API.Middleware;
 using TechSyence.API.Token;
@@ -13,17 +14,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Configure serilog
-Log.Logger = new LoggerConfiguration()
+if (builder.Environment.EnvironmentName != "Test")
+{
+    Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateBootstrapLogger();
 
-builder.Host.UseSerilog((context, service, configuration) =>
-{
-    configuration
-    .ReadFrom.Configuration(context.Configuration)
-    .ReadFrom.Services(service);
-
-});
+    builder.Host.UseSerilog((context, loggerConfig) =>
+    {
+        loggerConfig.ReadFrom.Configuration(context.Configuration);
+    });
+}
 
 // Add services to the container.
 builder.Services.AddControllers();
