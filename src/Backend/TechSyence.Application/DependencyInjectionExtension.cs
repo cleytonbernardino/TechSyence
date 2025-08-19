@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using TechSyence.Application.UseCases.Login;
 using TechSyence.Application.UseCases.User.Register;
+using TechSyence.Application.UseCases.WhatsApp.ReciverJson;
 
 namespace TechSyence.Application;
 
@@ -16,5 +17,6 @@ public static class DependencyInjectionExtension
     {
         service.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         service.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
+        service.AddScoped<IReciverJsonUseCase, ReciverJsonUseCase>();
     }
 }
