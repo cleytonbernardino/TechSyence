@@ -13,7 +13,7 @@ namespace Services.Test.Background.MessageGrouper;
 
 public class MessageGrouperTest
 {
-    [Fact]
+    [Fact(Skip = "Serviço desativado temporariamente.")]
     public async Task Success_Message_Is_Being_Delivered()
     {
         CancellationTokenSource cancellationToken = new();

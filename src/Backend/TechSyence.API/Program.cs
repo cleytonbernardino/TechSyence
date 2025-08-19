@@ -52,7 +52,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddHostedService<MessageGrouper>();
+//builder.Services.AddHostedService<MessageGrouper>();
 
 var app = builder.Build();
 

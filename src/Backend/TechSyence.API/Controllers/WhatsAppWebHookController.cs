@@ -19,18 +19,20 @@ public class WhatsappWebHookController(
         [FromBody] RequestWhatsAppMessage request
         )
     {
-        if (request.Entry.Count == 0)
-            return BadRequest();
+        //if (request.Entry.Count == 0)
+        //    return BadRequest();
 
-        // Verificação Fraca, serve apenas para testes da api
-        // Refinamente é extremamente necessario
-        var dto = new WhatsAppMessageDto
-        {
-            Messages = request.Entry[0].Changes[0].Value.Messages[0].Text.Body,
-            UserIndentifier = request.Entry[0].Changes[0].Value.Messages[0].From
-        };
+        //// Verificação Fraca, serve apenas para testes da api
+        //// Refinamente é extremamente necessario
+        //var dto = new WhatsAppMessageDto
+        //{
+        //    Messages = request.Entry[0].Changes[0].Value.Messages[0].Text.Body,
+        //    UserIndentifier = request.Entry[0].Changes[0].Value.Messages[0].From
+        //};
 
-        await _queue.EnqueueAsync(dto);
-        return Accepted();
+        //await _queue.EnqueueAsync(dto);
+        //return Accepted();
+
+        return NotFound();
     }
 }

@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSyence.Infrastructure",
 		{782469C8-17A4-4C30-A2DD-B03C4BC14B91} = {782469C8-17A4-4C30-A2DD-B03C4BC14B91}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSyence.Communiction", "src\Shared\TechSyence.Communiction\TechSyence.Communiction.csproj", "{E9EF6DF5-0229-4675-9C20-183377C62839}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSyence.Communication", "src\Shared\TechSyence.Communiction\TechSyence.Communication.csproj", "{E9EF6DF5-0229-4675-9C20-183377C62839}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSyence.Exceptions", "src\Shared\TechSyence.Exceptions\TechSyence.Exceptions.csproj", "{BE26352B-BCD5-4A9F-BF07-ED74BF64CA18}"
 EndProject
@@ -38,6 +38,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators.Test", "tests\Validators.Test\Validators.Test.csproj", "{8217BA54-FC04-4F5E-A2AF-1615C612EB77}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Test", "tests\WebApi.Test\WebApi.Test.csproj", "{6B7B760B-336E-457B-B85C-B26E2015216D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Test", "tests\Services.Test\Services.Test.csproj", "{D7D76067-F686-400B-8211-B82BBC029F2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FC6EE8CD-4D0D-4AF0-B9DE-67FCB64737A0}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +92,10 @@ Global
 		{6B7B760B-336E-457B-B85C-B26E2015216D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B7B760B-336E-457B-B85C-B26E2015216D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B7B760B-336E-457B-B85C-B26E2015216D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7D76067-F686-400B-8211-B82BBC029F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7D76067-F686-400B-8211-B82BBC029F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7D76067-F686-400B-8211-B82BBC029F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7D76067-F686-400B-8211-B82BBC029F2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +113,7 @@ Global
 		{00BC0CD3-2A26-4CBF-9565-2F9613081ECE} = {BF596C53-0952-430F-B3F2-8DE205E365E3}
 		{8217BA54-FC04-4F5E-A2AF-1615C612EB77} = {BF596C53-0952-430F-B3F2-8DE205E365E3}
 		{6B7B760B-336E-457B-B85C-B26E2015216D} = {BF596C53-0952-430F-B3F2-8DE205E365E3}
+		{D7D76067-F686-400B-8211-B82BBC029F2C} = {BF596C53-0952-430F-B3F2-8DE205E365E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A496028-88F0-48BC-A108-582B7007D0AE}
