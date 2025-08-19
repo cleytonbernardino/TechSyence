@@ -1,4 +1,4 @@
-﻿using TechSyence.Communication.Requests;
+﻿using TechSyence.Communication;
 
 namespace TechSyence.Application.UseCases.WhatsApp.ReciverJson;
 

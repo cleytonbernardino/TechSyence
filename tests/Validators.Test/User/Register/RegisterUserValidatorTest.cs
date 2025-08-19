@@ -1,7 +1,7 @@
 ﻿using CommonTestUtilities.Requests;
 using Shouldly;
 using TechSyence.Application.UseCases.User.Register;
-using TechSyence.Communication.Requests;
+using TechSyence.Communication;
 
 namespace Validators.Test.User.Register;
 
@@ -19,15 +19,13 @@ public class RegisterUserValidatorTest
         result.IsValid.ShouldBeTrue();
     }
 
-    [Theory]
-    [InlineData("")]
-    [InlineData(null)]
-    public void Success_Without_Name(string? lastName)
+    [Fact]
+    public void Success_Without_Name()
     {
         RegisterUserValidator validator = new();
 
         RequestRegisterUserJson request = RequestRegisterUserJsonBuilder.Build();
-        request.LastName = lastName;
+        request.LastName = "";
 
         var result = validator.Validate(request);
 

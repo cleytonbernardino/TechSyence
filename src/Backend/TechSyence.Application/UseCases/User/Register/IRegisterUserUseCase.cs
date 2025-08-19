@@ -1,5 +1,4 @@
-﻿using TechSyence.Communication.Requests;
-using TechSyence.Communication.Responses;
+﻿using TechSyence.Communication;
 
 namespace TechSyence.Application.UseCases.User.Register;
 

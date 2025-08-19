@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using TechSyence.Communication.Responses;
+using TechSyence.Communication;
 using TechSyence.Exceptions.ExceptionsBase;
 #if !DEBUG
 using TechSyence.Exceptions;
@@ -23,25 +23,30 @@ public class ExceptionFilter : IExceptionFilter
 
     private static void HandleProjectException(ExceptionContext context)
     {
+        var responseError = new ResponseErrorJson().Errors;
         if (context.Exception is InvalidLoginException)
         {
+            responseError.Add(context.Exception.Message);
             context.HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            context.Result = new UnauthorizedObjectResult(new ResponseErrorJson(context.Exception.Message));
+            context.Result = new UnauthorizedObjectResult(responseError);
         }
-        else if (context.Exception is ErrorOnValidationException)
+        else if (context.Exception is ErrorOnValidationException exception)
         {
-            var exception = context.Exception as ErrorOnValidationException;
+            responseError.Add(exception.ErrorMessages);
             context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(new ResponseErrorJson(exception!.ErrorMessages));
+            context.Result = new BadRequestObjectResult(responseError);
         }
     }
 
     private static void ThrowUnknowException(ExceptionContext context)
     {
+        var responseError = new ResponseErrorJson().Errors;
 #if DEBUG
-        context.Result = new ObjectResult(new ResponseErrorJson(context.Exception.Message));
+        responseError.Add(context.Exception.Message);
+        context.Result = new ObjectResult(responseError);
 #else
-        context.Result = new ObjectResult(new ResponseErrorJson(ResourceMessagesException.UNKNOWN_ERROR));
+        responseError.Add(ResourceMessagesException.UNKNOWN_ERROR);
+        context.Result = new ObjectResult(new ResponseErrorJson());
 #endif
     }
 }

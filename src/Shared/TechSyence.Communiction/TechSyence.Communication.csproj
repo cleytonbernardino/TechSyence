@@ -6,4 +6,25 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.32.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.72.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+	 <Protobuf Include="Protos\LoginProto.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\RegisterUserProto.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\ErrorProto.proto" GrpcServices="Server" />
+	  <Protobuf Include="Protos\TokenProto.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\WhatsAppMessage.proto" GrpcServices="Server" />
+  </ItemGroup>
+
 </Project>

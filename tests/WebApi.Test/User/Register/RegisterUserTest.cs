@@ -28,10 +28,9 @@ public class RegisterUserTest(
     }
 
     [Theory]
-    [InlineData(null)]
     [InlineData("")]
     [InlineData("    ")]
-    public async Task Success_Without_Last_Name(string? lastName)
+    public async Task Success_Without_Last_Name(string lastName)
     {
         var request = RequestRegisterUserJsonBuilder.Build();
         request.LastName = lastName;

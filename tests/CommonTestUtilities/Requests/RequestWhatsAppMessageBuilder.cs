@@ -1,6 +1,6 @@
 ﻿using Bogus;
-using TechSyence.Communication.Requests;
-using TechSyence.Communication.Requests.WhatsApp;
+using Google.Protobuf.Collections;
+using TechSyence.Communication;
 
 namespace CommonTestUtilities.Requests;
 
@@ -10,7 +10,13 @@ public class RequestWhatsAppMessageBuilder
     {
         return new Faker<RequestWhatsAppMessage>()
             .RuleFor(req => req.Object, () => "whatsapp_business_account")
-            .RuleFor(req => req.Entry, () => new List<WhatsAppEntryRequest> { CreateEntryObject() })
+            .RuleFor(req => req.Entry, (f, req) => { 
+                var repeated = new RepeatedField<WhatsAppEntryRequest>
+                {
+                    CreateEntryObject()
+                };
+                return repeated; 
+            })
             .Generate();
     }
 
@@ -18,7 +24,14 @@ public class RequestWhatsAppMessageBuilder
     {
         return new Faker<WhatsAppEntryRequest>()
             .RuleFor(req => req.Id, f => f.Random.Int().ToString())
-            .RuleFor(req => req.Changes, () => new List<WhatsAppChangesRequest> { CreateChangesObject() })
+            .RuleFor(req => req.Changes, (f, req) =>
+            {
+                var repeated = new RepeatedField<WhatsAppChangesRequest>
+                {
+                    CreateChangesObject()
+                };
+                return repeated;
+            })
             .Generate();
     }
 
@@ -35,8 +48,22 @@ public class RequestWhatsAppMessageBuilder
         return new Faker<WhatsAppValueRequest>()
             .RuleFor(req => req.MessagingProduct, f => f.Random.Word())
             .RuleFor(req => req.MetaData, () => CreateMetaDataObject())
-            .RuleFor(req => req.Contacts, () => new List<WhatsAppContactsRequest> { CreateContactsObject() })
-            .RuleFor(req => req.Messages, () => new List<WhatsAppMessagesRequest> { CreateMessagesObject() })
+            .RuleFor(req => req.Contacts, (f, req) =>
+            {
+                var repeated = new RepeatedField<WhatsAppContactsRequest>
+                {
+                    CreateContactsObject()
+                };
+                return repeated;
+            })
+            .RuleFor(req => req.Messages, (f, req) =>
+            {
+                var repeated = new RepeatedField<WhatsAppMessagesRequest>
+                {
+                    CreateMessagesObject()
+                };
+                return repeated;
+            })
             .Generate();
     }
 

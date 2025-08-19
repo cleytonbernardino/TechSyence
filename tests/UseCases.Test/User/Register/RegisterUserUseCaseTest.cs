@@ -4,7 +4,7 @@ using CommonTestUtilities.Requests;
 using CommonTestUtilities.Tokens;
 using Shouldly;
 using TechSyence.Application.UseCases.User.Register;
-using TechSyence.Communication.Requests;
+using TechSyence.Communication;
 using TechSyence.Domain.Repositories;
 using TechSyence.Domain.Repositories.User;
 using TechSyence.Domain.Security.Cryptography;

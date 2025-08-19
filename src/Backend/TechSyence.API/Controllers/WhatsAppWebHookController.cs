@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TechSyence.Application.Services.MessageQueue;
-using TechSyence.Communication.Requests;
-using TechSyence.Communication.Responses;
+using TechSyence.Communication;
 using TechSyence.Domain.Dtos;
 
 namespace TechSyence.API.Controllers;

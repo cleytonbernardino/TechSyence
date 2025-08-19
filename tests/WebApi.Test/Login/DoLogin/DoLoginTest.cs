@@ -2,7 +2,7 @@
 using Shouldly;
 using System.Net;
 using System.Globalization;
-using TechSyence.Communication.Requests;
+using TechSyence.Communication;
 using TechSyence.Exceptions;
 using WebApi.Test.InlineData;
 

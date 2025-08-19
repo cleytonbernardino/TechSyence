@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+
+package TechSyence.Communication;
+
+message ResponseTokenJson {
+    string access_token = 1;
+    string refresh_token = 2;
+}

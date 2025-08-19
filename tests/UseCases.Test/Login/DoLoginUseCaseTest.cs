@@ -3,7 +3,7 @@ using CommonTestUtilities.Repositories;
 using CommonTestUtilities.Tokens;
 using Shouldly;
 using TechSyence.Application.UseCases.Login;
-using TechSyence.Communication.Requests;
+using TechSyence.Communication;
 using TechSyence.Exceptions.ExceptionsBase;
 using Entity = TechSyence.Domain.Entities;
 

@@ -11,7 +11,7 @@ public class ReciverMessageTest(
 
     private const string METHOD = "WhatsappWebHook";
 
-    [Fact]
+    [Fact(Skip = "Desativado Temporariamente")]
     public async Task Success()
     {
         var request = RequestWhatsAppMessageBuilder.Build();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TechSyence.Application.UseCases.User.Register;
-using TechSyence.Communication.Requests;
-using TechSyence.Communication.Responses;
+using TechSyence.Communication;
 
 namespace TechSyence.API.Controllers;
 

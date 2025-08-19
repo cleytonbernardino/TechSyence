@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+
+package TechSyence.Communication;
+
+message ResponseErrorJson {
+	repeated string Errors = 1;
+
+}

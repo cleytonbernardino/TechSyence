@@ -40,10 +40,6 @@ public class TechSyenceClassFixture(
     /// of an HTTP response.
     /// </summary>
     /// <param name="response">The HTTP response containing the JSON content.</param>
-    /// <param name="PropertieName">
-    /// The name of the array property to retrieve. 
-    /// Defaults to "errors".
-    /// </param>
     /// <returns>
     /// A <see cref="JsonElement.ArrayEnumerator"/> to iterate over the elements of the specified array property.
     /// </returns>
@@ -53,10 +49,10 @@ public class TechSyenceClassFixture(
     /// It will throw a <see cref="KeyNotFoundException"/> if the property does not exist.
     /// Consider adding validation with <c>TryGetProperty</c> to avoid exceptions.
     /// </remarks>
-    protected static async Task<JsonElement.ArrayEnumerator> GetArrayFromResponse(HttpResponseMessage response, string PropertieName = "errors")
+    protected static async Task<JsonElement.ArrayEnumerator> GetArrayFromResponse(HttpResponseMessage response)
     {
         var jsonElement = await GetRootElement(response);
-        return jsonElement.GetProperty(PropertieName).EnumerateArray();
+        return jsonElement.EnumerateArray();
     }
 
     private void ChangeRequestCulture(string culture)

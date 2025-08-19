@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using TechSyence.Communication.Requests;
+using TechSyence.Communication;
 
 namespace CommonTestUtilities.Requests;
 
