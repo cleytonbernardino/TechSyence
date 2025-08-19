@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\TechSyence.Communiction\TechSyence.Communiction.csproj" />
+    <ProjectReference Include="..\..\Shared\TechSyence.Communiction\TechSyence.Communication.csproj" />
     <ProjectReference Include="..\..\Shared\TechSyence.Exceptions\TechSyence.Exceptions.csproj" />
     <ProjectReference Include="..\TechSyence.Domain\TechSyence.Domain.csproj" />
   </ItemGroup>

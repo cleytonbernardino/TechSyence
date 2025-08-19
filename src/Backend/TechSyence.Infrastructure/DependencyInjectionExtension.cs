@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using TechSyence.Application.Services.MessageQueue;
 using TechSyence.Domain.Repositories;
 using TechSyence.Domain.Repositories.User;
 using TechSyence.Domain.Security.Cryptography;
@@ -13,6 +14,7 @@ using TechSyence.Infrastructure.Extensions;
 using TechSyence.Infrastructure.Security.Cryptography;
 using TechSyence.Infrastructure.Security.Token.Access.Generate;
 using TechSyence.Infrastructure.Security.Token.Access.Validator;
+using TechSyence.Infrastructure.Services.MessageQueue;
 
 namespace TechSyence.Infrastructure;
 
@@ -23,6 +25,7 @@ public static class DependencyInjectionExtension
         AddRepositories(service);
         AddEncripter(service, configuration);
         AddJwtToken(service, configuration);
+        AddQueue(service);
 
         if (configuration.IsUnitTestEnviroment())
             return;
@@ -37,14 +40,6 @@ public static class DependencyInjectionExtension
         service.AddScoped<IUserWriteOnlyRepository, UserRepository>();
         service.AddScoped<IUnitOfWork, UnitOfWork>();
     }
-
-    // Sha-512, Removido devido a não ser indicado para senhas
-    // 10/08/2025
-    //private static void AddEncripter(IServiceCollection services, IConfiguration configuration)
-    //{
-    //    string passwordSalt = configuration.GetSection("Settings:Passwords:Salt").Value!;
-    //    services.AddScoped<IPasswordEncripter>(option => new Sha512Encripter(passwordSalt));
-    //}
 
     private static void AddEncripter(IServiceCollection services, IConfiguration configuration)
     {
@@ -83,5 +78,10 @@ public static class DependencyInjectionExtension
             .WithGlobalConnectionString(connectionString)
             .ScanIn(Assembly.Load("TechSyence.Infrastructure")).For.All()
         );
+    }
+
+    private static void AddQueue(IServiceCollection services)
+    {
+        services.AddSingleton<IMessageQueue, MessageQueue>();
     }
 }

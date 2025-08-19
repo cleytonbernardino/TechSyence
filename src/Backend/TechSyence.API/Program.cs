@@ -1,6 +1,5 @@
 using Microsoft.OpenApi.Models;
 using Serilog;
-using System.Diagnostics;
 using TechSyence.API.Filter;
 using TechSyence.API.Middleware;
 using TechSyence.API.Token;
@@ -9,20 +8,24 @@ using TechSyence.Domain.Security.Token;
 using TechSyence.Infrastructure;
 using TechSyence.Infrastructure.Extensions;
 using TechSyence.Infrastructure.Migrations;
+using TechSyence.Infrastructure.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-// Configure serilog
+// Cannot be loaded in test
 if (builder.Environment.EnvironmentName != "Test")
 {
+    // Configure serilog
     Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateBootstrapLogger();
 
-    builder.Host.UseSerilog((context, loggerConfig) =>
+    builder.Host.UseSerilog((context, service, configuration) =>
     {
-        loggerConfig.ReadFrom.Configuration(context.Configuration);
+        configuration
+        .ReadFrom.Configuration(context.Configuration)
+        .ReadFrom.Services(service);
+
     });
 }
 
@@ -48,6 +51,8 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddHostedService<MessageGrouper>();
 
 var app = builder.Build();
 
