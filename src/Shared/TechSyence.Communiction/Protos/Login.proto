@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package TechSyence.Communication;
 
-message RequestLoginJson {
+message RequestLogin {
     string email = 1;
     string password = 2;
 }

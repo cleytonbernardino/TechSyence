@@ -2,7 +2,7 @@
 
 package TechSyence.Communication;
 
-message ResponseErrorJson {
+message ResponseError {
 	repeated string Errors = 1;
 
 }

@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\CompanySubscription.proto" />
+    <None Remove="Protos\SubscriptionsPlan.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.32.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
     <PackageReference Include="Grpc.Tools" Version="2.72.0">
@@ -20,10 +25,16 @@
   </ItemGroup>
 
   <ItemGroup>
-	 <Protobuf Include="Protos\LoginProto.proto" GrpcServices="Server" />
-	 <Protobuf Include="Protos\RegisterUserProto.proto" GrpcServices="Server" />
-	 <Protobuf Include="Protos\ErrorProto.proto" GrpcServices="Server" />
-	  <Protobuf Include="Protos\TokenProto.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\CompanySubscription.proto" />
+	 <Protobuf Include="Protos\Login.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\ShortCompanies.proto">
+	   <GrpcServices>Server</GrpcServices>
+	 </Protobuf>
+	 <Protobuf Include="Protos\RegisterCompany.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\RegisterUser.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\Error.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\SubscriptionsPlan.proto" />
+	  <Protobuf Include="Protos\Token.proto" GrpcServices="Server" />
 	 <Protobuf Include="Protos\WhatsAppMessage.proto" GrpcServices="Server" />
   </ItemGroup>
 

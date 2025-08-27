@@ -2,7 +2,7 @@
 
 package TechSyence.Communication;
 
-message ResponseTokenJson {
+message ResponseToken {
     string access_token = 1;
     string refresh_token = 2;
 }
