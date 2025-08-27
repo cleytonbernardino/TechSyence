@@ -1,18 +1,21 @@
 ﻿using FluentValidation;
 using TechSyence.Application.SharedValidators;
 using TechSyence.Communication;
+using TechSyence.Domain.Enums;
 using TechSyence.Exceptions;
 
 namespace TechSyence.Application.UseCases.User.Register;
 
-public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
+public class RegisterUserValidator : AbstractValidator<RequestRegisterUser>
 {
     public RegisterUserValidator()
     {
         RuleFor(user => user.Email).NotEmpty().WithMessage(ResourceMessagesException.EMAIL_EMPTY);
         RuleFor(user => user.Phone).NotEmpty().WithMessage(ResourceMessagesException.PHONE_EMPTY);
         RuleFor(user => user.FirstName).NotEmpty().WithMessage(ResourceMessagesException.FIRST_NAME_EMPTY);
-        RuleFor(user => user.Password).SetValidator(new PasswordValidator<RequestRegisterUserJson>());
+        RuleFor(user => user.Password).SetValidator(new PasswordValidator<RequestRegisterUser>());
+        RuleFor(user => user.Role).NotEmpty()
+            .Must(role => Enum.IsDefined(typeof(UserRolesEnum), role)).WithMessage(ResourceMessagesException.ROLE_INVALID);
         When(user => !string.IsNullOrEmpty(user.Email), () =>
         {
             RuleFor(user => user.Email).EmailAddress().WithMessage(ResourceMessagesException.INVALID_EMAIL);

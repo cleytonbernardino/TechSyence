@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Grpc.Core;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using TechSyence.Communication;
 using TechSyence.Exceptions.ExceptionsBase;
@@ -23,12 +24,18 @@ public class ExceptionFilter : IExceptionFilter
 
     private static void HandleProjectException(ExceptionContext context)
     {
-        var responseError = new ResponseErrorJson().Errors;
+        var responseError = new ResponseError().Errors;
         if (context.Exception is InvalidLoginException)
         {
             responseError.Add(context.Exception.Message);
             context.HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
             context.Result = new UnauthorizedObjectResult(responseError);
+        }
+        else if (context.Exception is NoPermission)
+        {
+            responseError.Add(context.Exception.Message);
+            context.HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
+            context.Result = new ForbidResult(responseError);
         }
         else if (context.Exception is ErrorOnValidationException exception)
         {
@@ -40,13 +47,13 @@ public class ExceptionFilter : IExceptionFilter
 
     private static void ThrowUnknowException(ExceptionContext context)
     {
-        var responseError = new ResponseErrorJson().Errors;
+        var responseError = new ResponseError().Errors;
 #if DEBUG
         responseError.Add(context.Exception.Message);
         context.Result = new ObjectResult(responseError);
 #else
         responseError.Add(ResourceMessagesException.UNKNOWN_ERROR);
-        context.Result = new ObjectResult(new ResponseErrorJson());
+        context.Result = new ObjectResult(new ResponseError());
 #endif
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TechSyence.Application.UseCases.User.Register;
 using TechSyence.Communication;
 
@@ -7,14 +8,15 @@ namespace TechSyence.API.Controllers;
 public class UserController : TechSyenceBaseController
 {
     [HttpPost]
-    [ProducesResponseType(typeof(ResponseResgisteredUserJson), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseResgisteredUser), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(RequestLogin), StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "ADMIN,RH,SUB_MANAGER,MANAGER")]
     public async Task<IActionResult> Register(
-        [FromBody] RequestRegisterUserJson request,
+        [FromBody] RequestRegisterUser request,
         [FromServices] IRegisterUserUseCase useCase
         )
     {
-        ResponseResgisteredUserJson response = await useCase.Execute(request);
+        ResponseResgisteredUser response = await useCase.Execute(request);
         return Created("", response);
     }
 }
