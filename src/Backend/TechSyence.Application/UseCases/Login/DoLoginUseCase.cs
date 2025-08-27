@@ -13,25 +13,25 @@ public class DoLoginUseCase(
     private readonly IUserReadOnlyRepository _repository = repository;
     private readonly IAccessTokenGenerator _accessTokenGenerator = accessTokenGenerator;
 
-    public async Task<ResponseResgisteredUserJson> Execute(RequestLoginJson request)
+    public async Task<ResponseResgisteredUser> Execute(RequestLogin request)
     {
         Validator(request);
 
         var user = await _repository.GetUserByEmailAndPassword(request.Email, request.Password)
             ?? throw new InvalidLoginException();
 
-        return new ResponseResgisteredUserJson
+        return new ResponseResgisteredUser
         {
             FirstName = user.FirstName,
-            Tokens = new ResponseTokenJson
+            Tokens = new ResponseToken
             {
-                AccessToken = _accessTokenGenerator.Generate(user.UserIndentifier),
+                AccessToken = _accessTokenGenerator.Generate(user.UserIndentifier, user.Role, user.IsAdmin),
                 RefreshToken = string.Empty
             }
         };
     }
 
-    private static void Validator(RequestLoginJson request)
+    private static void Validator(RequestLogin request)
     {
         DoLoginValidator validator = new();
 
