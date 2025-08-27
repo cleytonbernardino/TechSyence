@@ -2,21 +2,16 @@
 
 namespace TechSyence.Infrastructure.Migrations.Versions;
 
-[Migration(DatabaseVersions.TABLE_USER, "Criando o primeiro modelo usuario")]
+[Migration(DatabaseVersions.TABLE_COMPANY_SUBSCRIPTION, "Creating the company subscription table")]
 public class Version0000001 : VersionBase
 {
-    private const string DATABASE_NAME = "Users";
-
     public override void Up()
     {
-        CreateTable(DATABASE_NAME)
-            .WithColumn("IsAdmin").AsBoolean().WithDefaultValue(false)
-            .WithColumn("UpdatedOn").AsDateTime().NotNullable()
-            .WithColumn("UserIndentifier").AsGuid().NotNullable()
-            .WithColumn("Email").AsString().NotNullable().Unique()
-            .WithColumn("Phone").AsString().NotNullable().Unique()
-            .WithColumn("FirstName").AsString().NotNullable()
-            .WithColumn("LastName").AsString().Nullable()
-            .WithColumn("Password").AsString().NotNullable();
+        CreateTable(TableNames.TABLE_COMPANY_SUBSCRIPTION)
+            .WithColumn("SubscriptionId").AsInt16()
+            .WithColumn("IsBillingAnnual").AsBoolean().NotNullable().WithDefaultValue(false)
+            .WithColumn("PaymentStatus").AsInt16().NotNullable()
+            .WithColumn("NextBillingDate").AsDateTime().NotNullable()
+            .WithColumn("PaymentMethod").AsInt16().NotNullable();
     }
 }

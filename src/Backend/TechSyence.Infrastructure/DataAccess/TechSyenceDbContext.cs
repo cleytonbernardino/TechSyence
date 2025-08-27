@@ -3,11 +3,12 @@ using TechSyence.Domain.Entities;
 
 namespace TechSyence.Infrastructure.DataAccess;
 
-public class TechSyenceDbContext : DbContext
+public class TechSyenceDbContext(
+    DbContextOptions dbContextOptions
+    ) : DbContext(dbContextOptions)
 {
     public DbSet<User> Users { get; set; }
-
-    public TechSyenceDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions) {  }
+    public DbSet<Company> Companies { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

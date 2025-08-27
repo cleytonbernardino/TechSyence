@@ -11,6 +11,20 @@ internal class UserRepository(
 {
     private readonly TechSyenceDbContext _dbContext = dbContext;
 
+    public async Task<bool> ExistActiveUserWithIndentifier(Guid userIndentifier)
+    {
+        return await _dbContext.Users.AnyAsync(user =>
+            user.UserIndentifier == userIndentifier && user.Active
+        );
+    }
+
+    public async Task<bool> ExistActiveUserWithId(long id)
+    {
+        return await _dbContext
+            .Users
+            .AnyAsync(user => user.Id == id && user.Active == true);
+    }
+
     public async Task<bool> ExistActiveUserWithEmail(string email)
     {
         return await _dbContext

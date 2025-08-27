@@ -2,5 +2,5 @@
 
 public interface IUserWriteOnlyRepository
 {
-    Task RegisterUser(Domain.Entities.User user);
+    Task RegisterUser(Entities.User user);
 }
