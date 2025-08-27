@@ -147,4 +147,58 @@
   <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
     <value>Email e(ou) senha incorreto.</value>
   </data>
+  <data name="CNPJ_EMPTY" xml:space="preserve">
+    <value>CNPJ não pode está vazio.</value>
+  </data>
+  <data name="CEP_EMPTY" xml:space="preserve">
+    <value>CEP não pode está vazio</value>
+  </data>
+  <data name="CEP_INVALID" xml:space="preserve">
+    <value>CEP não é valido</value>
+  </data>
+  <data name="CNPJ_INVALID" xml:space="preserve">
+    <value>CNPJ não é valido</value>
+  </data>
+  <data name="LEGAL_NAME_EMPTY" xml:space="preserve">
+    <value>Nome legal não pode está vazio.</value>
+  </data>
+  <data name="ADDRESS_NUMBER_EMPTY" xml:space="preserve">
+    <value>Número do estabelecimento não pode está vazio.</value>
+  </data>
+  <data name="MANAGER_ID_EMPTY" xml:space="preserve">
+    <value>Id do responsável não pode está vazio.</value>
+  </data>
+  <data name="SUBSCRIPTION_PLAN_EMPTY" xml:space="preserve">
+    <value>Tipo de inscrição não pode está vazio.</value>
+  </data>
+  <data name="DBA_MAX_LENGTH" xml:space="preserve">
+    <value>O tamanho máximo do nome fantasia deve ter até 100 caracteres.</value>
+  </data>
+  <data name="NO_TOKEN" xml:space="preserve">
+    <value>Nenhum token foi encontrado na requisição.</value>
+  </data>
+  <data name="USER_DOES_NOT_HAVE_PERMISSION" xml:space="preserve">
+    <value>Usuario não tem permissão para acessar esse recurso.</value>
+  </data>
+  <data name="EXPIRED_TOKEN" xml:space="preserve">
+    <value>Token expirado.</value>
+  </data>
+  <data name="INVALID_VALUE_TYPE" xml:space="preserve">
+    <value>Tipo de valor Invalido.</value>
+  </data>
+  <data name="MANAGER_ID_INVALID" xml:space="preserve">
+    <value>O Id do responsável não é valido.</value>
+  </data>
+  <data name="ROLE_INVALID" xml:space="preserve">
+    <value>A função informada não é inválida.</value>
+  </data>
+  <data name="NO_PERMISSION" xml:space="preserve">
+    <value>Permissão muito baixa para realizar essa ação.</value>
+  </data>
+  <data name="USER_CONTEXT_NOT_FOUND" xml:space="preserve">
+    <value>O contexto do usuário não foi encontrado.</value>
+  </data>
+  <data name="SID_CLAIM_NOT_FOUND" xml:space="preserve">
+    <value>A claim de ID do usuário (Sid) não foi encontrada no token.</value>
+  </data>
 </root>

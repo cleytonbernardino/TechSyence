@@ -61,6 +61,60 @@ namespace TechSyence.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Address number cannot be empty..
+        /// </summary>
+        public static string ADDRESS_NUMBER_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS_NUMBER_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a CEP cannot be empty.
+        /// </summary>
+        public static string CEP_EMPTY {
+            get {
+                return ResourceManager.GetString("CEP_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a CEP code is not valid..
+        /// </summary>
+        public static string CEP_INVALID {
+            get {
+                return ResourceManager.GetString("CEP_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a CNPJ cannot be empty..
+        /// </summary>
+        public static string CNPJ_EMPTY {
+            get {
+                return ResourceManager.GetString("CNPJ_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a CNJP is not valid..
+        /// </summary>
+        public static string CNPJ_INVALID {
+            get {
+                return ResourceManager.GetString("CNPJ_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The maximum length of the trade name must be up to 100 characters..
+        /// </summary>
+        public static string DBA_MAX_LENGTH {
+            get {
+                return ResourceManager.GetString("DBA_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Email cannot be empty..
         /// </summary>
         public static string EMAIL_EMPTY {
@@ -88,6 +142,15 @@ namespace TechSyence.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Expired token..
+        /// </summary>
+        public static string EXPIRED_TOKEN {
+            get {
+                return ResourceManager.GetString("EXPIRED_TOKEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a First name cannot be empty..
         /// </summary>
         public static string FIRST_NAME_EMPTY {
@@ -102,6 +165,60 @@ namespace TechSyence.Exceptions {
         public static string INVALID_EMAIL {
             get {
                 return ResourceManager.GetString("INVALID_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Invalid value type..
+        /// </summary>
+        public static string INVALID_VALUE_TYPE {
+            get {
+                return ResourceManager.GetString("INVALID_VALUE_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Legal name cannot be empty..
+        /// </summary>
+        public static string LEGAL_NAME_EMPTY {
+            get {
+                return ResourceManager.GetString("LEGAL_NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Manager Id cannot be empty..
+        /// </summary>
+        public static string MANAGER_ID_EMPTY {
+            get {
+                return ResourceManager.GetString("MANAGER_ID_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Manager Id is not valid..
+        /// </summary>
+        public static string MANAGER_ID_INVALID {
+            get {
+                return ResourceManager.GetString("MANAGER_ID_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Permission too low to perform this action..
+        /// </summary>
+        public static string NO_PERMISSION {
+            get {
+                return ResourceManager.GetString("NO_PERMISSION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No token was found in the request..
+        /// </summary>
+        public static string NO_TOKEN {
+            get {
+                return ResourceManager.GetString("NO_TOKEN", resourceCulture);
             }
         }
         
@@ -142,11 +259,56 @@ namespace TechSyence.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Role reported is not invalid..
+        /// </summary>
+        public static string ROLE_INVALID {
+            get {
+                return ResourceManager.GetString("ROLE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The user ID (Sid) claim was not found in the token..
+        /// </summary>
+        public static string SID_CLAIM_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("SID_CLAIM_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Subscription plan type cannot be empty..
+        /// </summary>
+        public static string SUBSCRIPTION_PLAN_EMPTY {
+            get {
+                return ResourceManager.GetString("SUBSCRIPTION_PLAN_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Unknown error..
         /// </summary>
         public static string UNKNOWN_ERROR {
             get {
                 return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a User context not found..
+        /// </summary>
+        public static string USER_CONTEXT_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("USER_CONTEXT_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a User does not have permission to access this resource..
+        /// </summary>
+        public static string USER_DOES_NOT_HAVE_PERMISSION {
+            get {
+                return ResourceManager.GetString("USER_DOES_NOT_HAVE_PERMISSION", resourceCulture);
             }
         }
     }
