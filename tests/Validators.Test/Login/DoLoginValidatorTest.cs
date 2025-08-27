@@ -9,7 +9,7 @@ public class DoLoginValidatorTest
     [Fact]
     public void Success()
     {
-        var request = RequestLoginJsonBuilder.Build();
+        var request = RequestLoginBuilder.Build();
 
         DoLoginValidator validator = new();
 
@@ -21,7 +21,7 @@ public class DoLoginValidatorTest
     [Fact]
     public void Error_Email_Empty()
     {
-        var request = RequestLoginJsonBuilder.Build();
+        var request = RequestLoginBuilder.Build();
         request.Email = string.Empty;
 
         DoLoginValidator validator = new();
@@ -34,7 +34,7 @@ public class DoLoginValidatorTest
     [Fact]
     public void Error_Email_Invalid()
     {
-        var request = RequestLoginJsonBuilder.Build();
+        var request = RequestLoginBuilder.Build();
         request.Email = "email";
 
         DoLoginValidator validator = new();
@@ -47,7 +47,7 @@ public class DoLoginValidatorTest
     [Fact]
     public void Error_Password_Invalid()
     {
-        var request = RequestLoginJsonBuilder.Build();
+        var request = RequestLoginBuilder.Build();
         request.Password = string.Empty;
 
         DoLoginValidator validator = new();

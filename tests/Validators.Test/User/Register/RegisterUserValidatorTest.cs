@@ -2,6 +2,7 @@
 using Shouldly;
 using TechSyence.Application.UseCases.User.Register;
 using TechSyence.Communication;
+using TechSyence.Exceptions;
 
 namespace Validators.Test.User.Register;
 
@@ -12,7 +13,7 @@ public class RegisterUserValidatorTest
     {
         RegisterUserValidator validator = new();
 
-        RequestRegisterUserJson request = RequestRegisterUserJsonBuilder.Build();
+        RequestRegisterUser request = RequestRegisterUseBuilder.Build();
 
         var result = validator.Validate(request);
 
@@ -24,7 +25,7 @@ public class RegisterUserValidatorTest
     {
         RegisterUserValidator validator = new();
 
-        RequestRegisterUserJson request = RequestRegisterUserJsonBuilder.Build();
+        RequestRegisterUser request = RequestRegisterUseBuilder.Build();
         request.LastName = "";
 
         var result = validator.Validate(request);
@@ -37,12 +38,15 @@ public class RegisterUserValidatorTest
     {
         RegisterUserValidator validator = new();
 
-        RequestRegisterUserJson request = RequestRegisterUserJsonBuilder.Build();
+        RequestRegisterUser request = RequestRegisterUseBuilder.Build();
         request.Email = string.Empty;
 
         var result = validator.Validate(request);
 
         result.IsValid.ShouldBeFalse();
+        result.Errors.Single()
+            .ToString()
+            .ShouldBe(ResourceMessagesException.EMAIL_EMPTY);
     }
 
     [Fact]
@@ -50,12 +54,15 @@ public class RegisterUserValidatorTest
     {
         RegisterUserValidator validator = new();
 
-        RequestRegisterUserJson request = RequestRegisterUserJsonBuilder.Build();
+        RequestRegisterUser request = RequestRegisterUseBuilder.Build();
         request.Email = "testing";
 
         var result = validator.Validate(request);
 
-        result.IsValid!.ShouldBeFalse();
+        result.IsValid.ShouldBeFalse();
+        result.Errors.Single()
+            .ToString()
+            .ShouldBe(ResourceMessagesException.INVALID_EMAIL);
     }
 
     [Fact]
@@ -63,12 +70,15 @@ public class RegisterUserValidatorTest
     {
         RegisterUserValidator validator = new();
 
-        RequestRegisterUserJson request = RequestRegisterUserJsonBuilder.Build();
+        RequestRegisterUser request = RequestRegisterUseBuilder.Build();
         request.Phone = "928194jh142";
 
         var result = validator.Validate(request);
 
-        result.IsValid!.ShouldBeFalse();
+        result.IsValid.ShouldBeFalse();
+        result.Errors.Single()
+            .ToString()
+            .ShouldBe(ResourceMessagesException.PHONE_NOT_VALID);
     }
 
     [Fact]
@@ -76,12 +86,15 @@ public class RegisterUserValidatorTest
     {
         RegisterUserValidator validator = new();
 
-        RequestRegisterUserJson request = RequestRegisterUserJsonBuilder.Build();
+        RequestRegisterUser request = RequestRegisterUseBuilder.Build();
         request.Phone = string.Empty;
 
         var result = validator.Validate(request);
 
-        result.IsValid!.ShouldBeFalse();
+        result.IsValid.ShouldBeFalse();
+        result.Errors.Single()
+            .ToString()
+            .ShouldBe(ResourceMessagesException.PHONE_EMPTY);
     }
 
     [Fact]
@@ -89,12 +102,15 @@ public class RegisterUserValidatorTest
     {
         RegisterUserValidator validator = new();
 
-        RequestRegisterUserJson request = RequestRegisterUserJsonBuilder.Build();
+        RequestRegisterUser request = RequestRegisterUseBuilder.Build();
         request.FirstName = string.Empty;
 
         var result = validator.Validate(request);
 
-        result.IsValid!.ShouldBeFalse();
+        result.IsValid.ShouldBeFalse();
+        result.Errors.Single()
+            .ToString()
+            .ShouldBe(ResourceMessagesException.FIRST_NAME_EMPTY);
     }
 
     [Fact]
@@ -102,11 +118,29 @@ public class RegisterUserValidatorTest
     {
         RegisterUserValidator validator = new();
 
-        RequestRegisterUserJson request = RequestRegisterUserJsonBuilder.Build();
+        RequestRegisterUser request = RequestRegisterUseBuilder.Build();
         request.Password = string.Empty;
 
         var result = validator.Validate(request);
 
-        result.IsValid!.ShouldBeFalse();
+        result.IsValid.ShouldBeFalse();
+        result.Errors.Single()
+            .ToString()
+            .ShouldBe(ResourceMessagesException.PASSWORD_EMPTY);
+    }
+
+    [Fact]
+    public void Error_Role_Does_Not_Exist()
+    {
+        var request = RequestRegisterUseBuilder.Build();
+        request.Role = 10000;
+
+        RegisterUserValidator validator = new();
+        var result = validator.Validate(request);
+
+        result.IsValid.ShouldBeFalse();
+        result.Errors.Single()
+            .ToString()
+            .ShouldBe(ResourceMessagesException.ROLE_INVALID);
     }
 }

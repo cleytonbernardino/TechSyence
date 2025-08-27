@@ -11,15 +11,24 @@ namespace WebApi.Test;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     private Entity.User _user = default!;
+    private Entity.User _userAdmin = default!;
 
     public string UserPassword { get; private set; } = string.Empty;
+    
     public string GetEmail() => _user.Email;
+    public Guid GetUserIndentifier() => _user.UserIndentifier;
+
+    public void ChangeAdminStatus() => _user = _userAdmin;
 
     private void StartDatabase(TechSyenceDbContext dbContext)
     {
         (_user, UserPassword) = UserBuilder.BuildWithPassword();
+        _userAdmin = UserBuilder.Build();
+        _userAdmin.Id = _user.Id + 1;
+        _userAdmin.IsAdmin = true;
 
         dbContext.Users.Add(_user);
+        dbContext.Users.Add(_userAdmin);
         dbContext.SaveChanges();
     }
 

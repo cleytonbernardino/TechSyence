@@ -18,7 +18,7 @@ public class DoLoginTest(
     [Fact]
     public async Task Success()
     {
-        var request = new RequestLoginJson
+        var request = new RequestLogin
         {
             Email = factory.GetEmail(),
             Password = factory.UserPassword
@@ -32,13 +32,13 @@ public class DoLoginTest(
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Invalid_Email_Credentials(string culture)
     {
-        var request = new RequestLoginJson
+        var request = new RequestLogin
         {
             Email = "tes@email.com",
             Password = factory.UserPassword
         };
 
-        var response = await DoPostAsync(METHOD, request, culture);
+        var response = await DoPostAsync(method: METHOD, request: request, culture: culture);
         response.StatusCode.ShouldBe(HttpStatusCode.Unauthorized);
 
         var errorList = await GetArrayFromResponse(response);
@@ -53,13 +53,13 @@ public class DoLoginTest(
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Invalid_Password_Credentials(string culture)
     {
-        var request = new RequestLoginJson
+        var request = new RequestLogin
         {
             Email = factory.GetEmail(),
             Password = factory.UserPassword + "abc"
         };
 
-        var response = await DoPostAsync(METHOD, request, culture);
+        var response = await DoPostAsync(method: METHOD, request: request, culture: culture);
         response.StatusCode.ShouldBe(HttpStatusCode.Unauthorized);
 
         var errorList = await GetArrayFromResponse(response);
@@ -74,10 +74,10 @@ public class DoLoginTest(
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Invalid_Email(string culture)
     {
-        var request = RequestLoginJsonBuilder.Build();
+        var request = RequestLoginBuilder.Build();
         request.Email = "tes";
 
-        var response = await DoPostAsync(METHOD, request, culture);
+        var response = await DoPostAsync(method: METHOD, request: request, culture: culture);
         response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
 
         var errorList = await GetArrayFromResponse(response);
@@ -92,10 +92,10 @@ public class DoLoginTest(
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Invalid_Password(string culture)
     {
-        var request = RequestLoginJsonBuilder.Build();
+        var request = RequestLoginBuilder.Build();
         request.Password = string.Empty;
 
-        var response = await DoPostAsync(METHOD, request, culture);
+        var response = await DoPostAsync(method: METHOD, request: request, culture: culture);
         response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
 
         var errorList = await GetArrayFromResponse(response);

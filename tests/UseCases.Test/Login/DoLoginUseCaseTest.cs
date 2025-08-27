@@ -16,7 +16,7 @@ public class DoLoginUseCaseTest
     {
         var user = UserBuilder.Build();
 
-        var request = new RequestLoginJson
+        var request = new RequestLogin
         {
             Email = user.Email,
             Password = user.Password,
@@ -34,7 +34,7 @@ public class DoLoginUseCaseTest
     {
         var user = UserBuilder.Build();
 
-        var request = new RequestLoginJson
+        var request = new RequestLogin
         {
             Email = "tes@gmail.com",
             Password = user.Password,
@@ -52,7 +52,7 @@ public class DoLoginUseCaseTest
     {
         var user = UserBuilder.Build();
 
-        var request = new RequestLoginJson
+        var request = new RequestLogin
         {
             Email = user.Email,
             Password = user.Password + "123",
@@ -70,28 +70,10 @@ public class DoLoginUseCaseTest
     {
         var user = UserBuilder.Build();
 
-        var request = new RequestLoginJson
+        var request = new RequestLogin
         {
             Email = "Fake",
             Password = user.Password,
-        };
-
-        var useCase = CreateUseCase(user);
-
-        async Task act() => await useCase.Execute(request);
-
-        await act().ShouldThrowAsync<ErrorOnValidationException>();
-    }
-
-    [Fact]
-    public async Task Error_Invalid_Password()
-    {
-        var user = UserBuilder.Build();
-
-        var request = new RequestLoginJson
-        {
-            Email = user.Email,
-            Password = string.Empty,
         };
 
         var useCase = CreateUseCase(user);

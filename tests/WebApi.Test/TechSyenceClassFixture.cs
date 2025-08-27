@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text.Json;
 
 namespace WebApi.Test;
@@ -9,10 +11,19 @@ public class TechSyenceClassFixture(
 {
     private readonly HttpClient _client = factory.CreateClient();
 
-    protected async Task<HttpResponseMessage> DoPostAsync(string method, object request, string culture = "en")
+    protected async Task<HttpResponseMessage> DoPostAsync(string method, object request, string token = "", string culture = "en")
     {
         ChangeRequestCulture(culture);
+        AuthorizeRequest(token);
         return await _client.PostAsJsonAsync(method, request);
+    }
+
+    private void AuthorizeRequest(string? token)
+    {
+        if (string.IsNullOrWhiteSpace(token))
+            return;
+
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
 
     /// <summary>
