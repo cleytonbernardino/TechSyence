@@ -5,15 +5,17 @@ using TechSyence.Domain.Dtos;
 
 namespace TechSyence.API.Controllers;
 
+[Route("[Controller]")]
+[ApiController]
 public class WhatsappWebHookController(
     IMessageQueue queue
-    ) : TechSyenceBaseController
+    ) : ControllerBase
 {
     private readonly IMessageQueue _queue = queue;
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
-    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(RequestLogin), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ReciverMessage(
         [FromBody] RequestWhatsAppMessage request
         )

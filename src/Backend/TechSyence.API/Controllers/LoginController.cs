@@ -4,14 +4,16 @@ using TechSyence.Communication;
 
 namespace TechSyence.API.Controllers;
 
-public class LoginController : TechSyenceBaseController
+[Route("[Controller]")]
+[ApiController]
+public class LoginController : ControllerBase
 {
     [HttpPost]
-    [ProducesResponseType(typeof(ResponseResgisteredUserJson), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseResgisteredUser), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RequestLogin), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Login(
         [FromServices] IDoLoginUseCase useCase,
-        [FromBody] RequestLoginJson request
+        [FromBody] RequestLogin request
         )
     {
         var response = await useCase.Execute(request);
