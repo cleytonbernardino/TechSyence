@@ -8,7 +8,7 @@ using TechSyence.Domain.Security.Token;
 using TechSyence.Infrastructure;
 using TechSyence.Infrastructure.Extensions;
 using TechSyence.Infrastructure.Migrations;
-using TechSyence.Infrastructure.Workers;
+//using TechSyence.Infrastructure.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +50,7 @@ builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
+builder.Services.AddScoped<IAccessTokenClaims, HttpContextLoggedUser>();
 builder.Services.AddHttpContextAccessor();
 
 //builder.Services.AddHostedService<MessageGrouper>();
@@ -65,6 +66,8 @@ if (app.Environment.IsDevelopment())
         ui.SwaggerEndpoint("/swagger/v1/swagger.json", "TechSyence v1");
     });
 }
+
+//app.MapGrpcService();
 
 app.UseMiddleware<CultureMiddleware>();
 
