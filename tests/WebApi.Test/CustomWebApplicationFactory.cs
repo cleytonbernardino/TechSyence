@@ -12,6 +12,9 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     private Entity.User _user = default!;
     private Entity.User _userAdmin = default!;
+    private Entity.User _userEmployee = default!;
+
+    public int UserInDataBase { get; private set; } = 3;
 
     public string UserPassword { get; private set; } = string.Empty;
     
@@ -19,17 +22,24 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
     public Guid GetUserIndentifier() => _user.UserIndentifier;
 
     public void ChangeAdminStatus() => _user = _userAdmin;
+    public void ChangeToEmployee() => _user = _userEmployee;
 
-    private void StartDatabase(TechSyenceDbContext dbContext)
+    private void CreateEntities(TechSyenceDbContext dbContext)
     {
         (_user, UserPassword) = UserBuilder.BuildWithPassword();
+
         _userAdmin = UserBuilder.Build();
         _userAdmin.Id = _user.Id + 1;
         _userAdmin.IsAdmin = true;
 
+
+        _userEmployee = UserBuilder.Build();
+        _userEmployee.Id = _userAdmin.Id + 1;
+        _userEmployee.Role = TechSyence.Domain.Enums.UserRolesEnum.EMPLOYEE;
+
         dbContext.Users.Add(_user);
         dbContext.Users.Add(_userAdmin);
-        dbContext.SaveChanges();
+        dbContext.Users.Add(_userEmployee);
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -53,7 +63,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 var dbContext = scope.ServiceProvider.GetRequiredService<TechSyenceDbContext>();
                 dbContext.Database.EnsureDeleted();
 
-                StartDatabase(dbContext);
+                CreateEntities(dbContext);
+                dbContext.SaveChanges();
             });
     }
 }

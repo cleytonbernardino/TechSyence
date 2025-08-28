@@ -18,6 +18,13 @@ public class TechSyenceClassFixture(
         return await _client.PostAsJsonAsync(method, request);
     }
 
+    protected async Task<HttpResponseMessage> DoGetAsync(string method, string token = "", string culture = "")
+    {
+        ChangeRequestCulture(culture);
+        AuthorizeRequest(token);
+        return await _client.GetAsync(method);
+    }
+
     private void AuthorizeRequest(string? token)
     {
         if (string.IsNullOrWhiteSpace(token))

@@ -64,11 +64,11 @@ public class RegisterCompanyUseCaseTest
 
     private static RegisterCompanyUseCase CreateUseCase(Entity.User user)
     {
-        var idEncoder = IdEncoderBuilder.Build();
+        var idEncoder = new IdEncoderBuilder();
         var loggedUser = LoggedUserBuilder.Build(user);
         var repository = CompanyWriteOnlyRepositoryBuilder.Build();
         var unityOfWork = UnitOfWorkBuilder.Build();
 
-        return new RegisterCompanyUseCase(idEncoder, loggedUser, repository, unityOfWork);
+        return new RegisterCompanyUseCase(idEncoder.Build(), loggedUser, repository, unityOfWork);
     }
 }
