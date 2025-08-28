@@ -7,12 +7,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-variables:
-  GITHUB_OWNER: $(GITHUB_OWNER)
-  GITHUB_REPO:  $(GITHUB_REPO)
-  GIT_USER:     $(GIT_USER)
-  GIT_EMAIL:    $(GIT_EMAIL)
-
 stages:
 - stage: MirrorToGitHub
   displayName: "Mirror main → GitHub"
@@ -25,18 +19,14 @@ stages:
 
     - script: |
         set -eux
-        
         git config user.name  "$(GIT_USER)"
         git config user.email "$(GIT_EMAIL)"
 
-       
         git checkout main
 
-        
         git remote remove github || true
         git remote add github https://$(GITHUB_TOKEN)@github.com/$(GITHUB_OWNER)/$(GITHUB_REPO).git
 
-        
         git push github main:main
         git push github --tags
       displayName: "Enviar para GitHub"
