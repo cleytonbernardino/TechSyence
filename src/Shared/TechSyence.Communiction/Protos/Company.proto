@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package TechSyence.Communication;
 
+import "Protos/User.Proto";
+
 message RequestRegisterCompany {
     string CNJP = 1;
     string legal_name = 2;
@@ -15,4 +17,8 @@ message RequestRegisterCompany {
     string subscription_plan = 10;
     bool subscription_status = 11;
     optional string website = 12;
+}
+
+message ResponseListCompanyUser {
+    repeated ResponseShortUser users = 1;
 }

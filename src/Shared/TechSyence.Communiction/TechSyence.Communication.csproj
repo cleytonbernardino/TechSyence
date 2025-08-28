@@ -30,8 +30,8 @@
 	 <Protobuf Include="Protos\ShortCompanies.proto">
 	   <GrpcServices>Server</GrpcServices>
 	 </Protobuf>
-	 <Protobuf Include="Protos\RegisterCompany.proto" GrpcServices="Server" />
-	 <Protobuf Include="Protos\RegisterUser.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\Company.proto" GrpcServices="Server" />
+	 <Protobuf Include="Protos\User.proto" GrpcServices="Server" />
 	 <Protobuf Include="Protos\Error.proto" GrpcServices="Server" />
 	 <Protobuf Include="Protos\SubscriptionsPlan.proto" />
 	  <Protobuf Include="Protos\Token.proto" GrpcServices="Server" />
