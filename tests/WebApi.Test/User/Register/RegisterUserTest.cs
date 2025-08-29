@@ -18,7 +18,7 @@ public class RegisterUserTest(
     [Fact]
     public async Task Success()
     {
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.ManagerUser.UserIndentifier, UserRolesEnum.MANAGER);
         
         var request = RequestRegisterUseBuilder.Build();
 
@@ -36,7 +36,7 @@ public class RegisterUserTest(
     [InlineData("    ")]
     public async Task Success_Without_Last_Name(string lastName)
     {
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.ManagerUser.UserIndentifier, UserRolesEnum.MANAGER);
 
         var request = RequestRegisterUseBuilder.Build();
         request.LastName = lastName;
@@ -49,7 +49,7 @@ public class RegisterUserTest(
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_First_Name_Empty(string culture)
     {
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.ManagerUser.UserIndentifier, UserRolesEnum.MANAGER);
 
         var request = RequestRegisterUseBuilder.Build();
         request.FirstName = string.Empty;
@@ -69,7 +69,7 @@ public class RegisterUserTest(
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Email_Empty(string culture)
     {
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.ManagerUser.UserIndentifier, UserRolesEnum.MANAGER);
 
         var request = RequestRegisterUseBuilder.Build();
         request.Email = string.Empty;
@@ -88,10 +88,10 @@ public class RegisterUserTest(
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Email_In_Use(string culture)
     {
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.ManagerUser.UserIndentifier, UserRolesEnum.MANAGER);
 
         var request = RequestRegisterUseBuilder.Build();
-        request.Email = factory.GetEmail();
+        request.Email = factory.ManagerUser.Email;
 
         var response = await DoPostAsync(method: METHOD, request: request, token: token, culture: culture);
         response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
@@ -107,7 +107,7 @@ public class RegisterUserTest(
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Phone_Empty(string culture)
     {
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.ManagerUser.UserIndentifier, UserRolesEnum.MANAGER);
 
         var request = RequestRegisterUseBuilder.Build();
         request.Phone = string.Empty;
@@ -126,7 +126,7 @@ public class RegisterUserTest(
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Phone_Is_Returning_Error_With_Incorrect_Patterns(string culture)
     {
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.ManagerUser.UserIndentifier, UserRolesEnum.MANAGER);
 
         var request = RequestRegisterUseBuilder.Build();
         request.Phone = "(11) 91741824";

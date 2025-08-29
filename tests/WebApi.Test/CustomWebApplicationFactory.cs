@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TechSyence.Domain.Enums;
 using TechSyence.Infrastructure.DataAccess;
 using Entity = TechSyence.Domain.Entities;
 
@@ -10,38 +11,56 @@ namespace WebApi.Test;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    private Entity.User _user = default!;
-    private Entity.User _userAdmin = default!;
-    private Entity.User _userEmployee = default!;
+    public Entity.User EmployeeUser { get; private set; } 
+    public Entity.User RHUser { get; private set; } 
+    public Entity.User SubManagerUser { get; private set; } 
+    public Entity.User ManagerUser { get; private set; }
+    public Entity.User AdminUser { get; private set; }
 
-    public int UserInDataBase { get; private set; } = 3;
+    public int UserInDataBase { get; private set; } = 1;
 
     public string UserPassword { get; private set; } = string.Empty;
-    
-    public string GetEmail() => _user.Email;
-    public Guid GetUserIndentifier() => _user.UserIndentifier;
 
-    public void ChangeAdminStatus() => _user = _userAdmin;
-    public void ChangeToEmployee() => _user = _userEmployee;
-
-    private void CreateEntities(TechSyenceDbContext dbContext)
+    public Entity.User InjectUser(Entity.User user)
     {
-        (_user, UserPassword) = UserBuilder.BuildWithPassword();
+        using var scope = Services.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<TechSyenceDbContext>();
 
-        _userAdmin = UserBuilder.Build();
-        _userAdmin.Id = _user.Id + 1;
-        _userAdmin.IsAdmin = true;
-
-
-        _userEmployee = UserBuilder.Build();
-        _userEmployee.Id = _userAdmin.Id + 1;
-        _userEmployee.Role = TechSyence.Domain.Enums.UserRolesEnum.EMPLOYEE;
-
-        dbContext.Users.Add(_user);
-        dbContext.Users.Add(_userAdmin);
-        dbContext.Users.Add(_userEmployee);
+        user.Id = ++UserInDataBase;
+        dbContext.Add(user);
+        dbContext.SaveChanges();
+        return user;
     }
 
+    private void RegisterInitialUsers(TechSyenceDbContext dbContext)
+    {
+        (ManagerUser, UserPassword) = UserBuilder.BuildWithPassword();
+
+        EmployeeUser = UserBuilder.Build();
+        EmployeeUser.Id = ++UserInDataBase;
+        EmployeeUser.Role = UserRolesEnum.EMPLOYEE;
+        
+        RHUser = UserBuilder.Build();
+        RHUser.Id = ++UserInDataBase;
+        RHUser.Role = UserRolesEnum.RH;
+        
+        SubManagerUser = UserBuilder.Build();
+        SubManagerUser.Id = ++UserInDataBase;
+        SubManagerUser.Role = UserRolesEnum.SUB_MANAGER;
+        
+        AdminUser = UserBuilder.Build();
+        AdminUser.Id = ++UserInDataBase;
+        AdminUser.IsAdmin = true;
+
+        dbContext.Add(EmployeeUser);
+        dbContext.Add(RHUser);
+        dbContext.Add(SubManagerUser);
+        dbContext.Add(ManagerUser);
+        dbContext.Add(AdminUser);
+
+        dbContext.SaveChanges();
+    }
+    
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Test")
@@ -63,8 +82,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 var dbContext = scope.ServiceProvider.GetRequiredService<TechSyenceDbContext>();
                 dbContext.Database.EnsureDeleted();
 
-                CreateEntities(dbContext);
-                dbContext.SaveChanges();
+                RegisterInitialUsers(dbContext);
             });
     }
 }

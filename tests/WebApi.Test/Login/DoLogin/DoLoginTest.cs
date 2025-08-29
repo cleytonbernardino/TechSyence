@@ -20,7 +20,7 @@ public class DoLoginTest(
     {
         var request = new RequestLogin
         {
-            Email = factory.GetEmail(),
+            Email = factory.ManagerUser.Email,
             Password = factory.UserPassword
         };
 
@@ -55,7 +55,7 @@ public class DoLoginTest(
     {
         var request = new RequestLogin
         {
-            Email = factory.GetEmail(),
+            Email = factory.ManagerUser.Email,
             Password = factory.UserPassword + "abc"
         };
 

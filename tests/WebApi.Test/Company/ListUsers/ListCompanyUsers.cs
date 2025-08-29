@@ -12,7 +12,7 @@ public class ListCompanyUsers(CustomWebApplicationFactory factory) : TechSyenceC
     [Fact]
     public async Task Success()
     {
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.ManagerUser.UserIndentifier, UserRolesEnum.MANAGER);
 
         var response = await DoGetAsync(method: METHOD, token: token);
         response.StatusCode.ShouldBe(HttpStatusCode.OK);
@@ -28,7 +28,7 @@ public class ListCompanyUsers(CustomWebApplicationFactory factory) : TechSyenceC
     [Fact]
     public async Task Error_User_Without_Permission()
     {
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.EMPLOYEE);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.ManagerUser.UserIndentifier, UserRolesEnum.EMPLOYEE);
 
         var response = await DoGetAsync(method: METHOD, token: token);
         response.StatusCode.ShouldBe(HttpStatusCode.Forbidden);

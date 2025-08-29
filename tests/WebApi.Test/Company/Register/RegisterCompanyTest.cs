@@ -16,8 +16,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [Fact]
     public async Task Success()
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
 
@@ -28,8 +27,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [Fact]
     public async Task Success_Without_DBA()
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.DoingBusinessAs = string.Empty;
@@ -41,8 +39,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [Fact]
     public async Task Success_Without_Business_Email()
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.BusinessEmail = string.Empty;
@@ -54,8 +51,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [Fact]
     public async Task Success_Without_WebSite()
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.Website = string.Empty;
@@ -68,8 +64,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_CNPJ_Not_Valid(string culture)
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.CNJP = "750068710001";
@@ -88,8 +83,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_CNPJ_Empty(string culture)
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.CNJP = string.Empty;
@@ -108,8 +102,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Legal_Name_Empty(string culture)
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.LegalName = string.Empty;
@@ -128,8 +121,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_CEP_Not_Valid(string culture)
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.CEP = "0814173";
@@ -148,8 +140,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_CEP_Empty(string culture)
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.CEP = string.Empty;
@@ -168,8 +159,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Address_Number_Empty(string culture)
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.AddressNumber = string.Empty;
@@ -188,8 +178,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Phone_Number_Empty(string culture)
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.PhoneNumber = string.Empty;
@@ -208,8 +197,7 @@ public class RegisterCompanyTest(CustomWebApplicationFactory factory) : TechSyen
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Phone_Number_Invalid(string culture)
     {
-        factory.ChangeAdminStatus();
-        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.GetUserIndentifier(), UserRolesEnum.MANAGER, true);
+        var token = JwtTokenGeneratorBuilder.Build().Generate(factory.AdminUser.UserIndentifier, UserRolesEnum.MANAGER, true);
 
         var request = RequestRegisterCompanyBuilder.Build();
         request.PhoneNumber = "11 9873-1345";
