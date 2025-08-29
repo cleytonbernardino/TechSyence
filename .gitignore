@@ -417,5 +417,20 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
+# Default ignored files for JetBrains Rider
+.idea/
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/projectSettingsUpdater.xml
+/.idea.TechSyence.iml
+/contentModel.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
 # Appsetting Dev
 /src/Backend/TechSyence.API/appsettings.Development.json
