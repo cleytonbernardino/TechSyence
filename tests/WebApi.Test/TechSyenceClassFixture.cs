@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -18,11 +17,18 @@ public class TechSyenceClassFixture(
         return await _client.PostAsJsonAsync(method, request);
     }
 
-    protected async Task<HttpResponseMessage> DoGetAsync(string method, string token = "", string culture = "")
+    protected async Task<HttpResponseMessage> DoGetAsync(string method, string token = "", string culture = "en")
     {
         ChangeRequestCulture(culture);
         AuthorizeRequest(token);
         return await _client.GetAsync(method);
+    }
+
+    protected async Task<HttpResponseMessage> DoPutAsync(string method, object request, string token, string culture = "en")
+    {
+        ChangeRequestCulture(culture);
+        AuthorizeRequest(token);
+        return await _client.PutAsJsonAsync(method, request);
     }
 
     private void AuthorizeRequest(string? token)

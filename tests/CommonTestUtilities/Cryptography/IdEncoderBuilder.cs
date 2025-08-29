@@ -1,17 +1,11 @@
 ﻿using Moq;
-using Sqids;
 using TechSyence.Application.Services.Encoder;
 
 namespace CommonTestUtilities.Cryptography;
 
-public class IdEncoderBuilder
+public class IdEncoderBuilder : IdEncoderBase
 {
     private readonly Mock<IIdEncoder> _mock = new();
-    private readonly SqidsEncoder<long> _sqids = new(new SqidsOptions
-    {
-        MinLength = 3,
-        Alphabet = "aJVu3P4s0foxAqivmTdrGO1ynS6eMtRLwEFzZkDgCNcj2IHpK7l5bXYWhUBQ89"
-    });
 
     public IIdEncoder Build() => _mock.Object;
 
