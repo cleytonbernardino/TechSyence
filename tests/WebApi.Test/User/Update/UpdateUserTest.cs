@@ -14,7 +14,7 @@ using WebApi.Test.InlineData;
 
 namespace WebApi.Test.User.Update;
 
-public class UpdateUser(CustomWebApplicationFactory factory) : TechSyenceClassFixture(factory)
+public class UpdateUserTest(CustomWebApplicationFactory factory) : TechSyenceClassFixture(factory)
 {
     private const string METHOD = "User";
     private readonly IdEncoderForTests _idEncoder = new();

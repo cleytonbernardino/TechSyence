@@ -4,5 +4,5 @@ namespace TechSyence.Application.UseCases.User.Register;
 
 public interface IRegisterUserUseCase
 {
-    Task<ResponseResgisteredUser> Execute(RequestRegisterUser request);
+    Task<ResponseRegisteredUser> Execute(RequestRegisterUser request);
 }

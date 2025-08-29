@@ -13,14 +13,14 @@ public class DoLoginUseCase(
     private readonly IUserReadOnlyRepository _repository = repository;
     private readonly IAccessTokenGenerator _accessTokenGenerator = accessTokenGenerator;
 
-    public async Task<ResponseResgisteredUser> Execute(RequestLogin request)
+    public async Task<ResponseRegisteredUser> Execute(RequestLogin request)
     {
         Validator(request);
 
         var user = await _repository.GetUserByEmailAndPassword(request.Email, request.Password)
             ?? throw new InvalidLoginException();
 
-        return new ResponseResgisteredUser
+        return new ResponseRegisteredUser
         {
             FirstName = user.FirstName,
             Tokens = new ResponseToken

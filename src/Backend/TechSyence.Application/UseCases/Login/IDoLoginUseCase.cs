@@ -4,5 +4,5 @@ namespace TechSyence.Application.UseCases.Login;
 
 public interface IDoLoginUseCase
 {
-    Task<ResponseResgisteredUser> Execute(RequestLogin request);
+    Task<ResponseRegisteredUser> Execute(RequestLogin request);
 }

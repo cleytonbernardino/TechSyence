@@ -29,7 +29,7 @@ public class RegisterUserUseCase(
     private readonly IAccessTokenGenerator _accessTokenGenerator = accessTokenGenerator;
     private readonly IUnitOfWork _unityOfWork = unitOfWork;
 
-    public async Task<ResponseResgisteredUser> Execute(RequestRegisterUser request)
+    public async Task<ResponseRegisteredUser> Execute(RequestRegisterUser request)
     {
         var loggedUser = await _loggedUser.User();
 
@@ -49,7 +49,7 @@ public class RegisterUserUseCase(
         await _writeOnlyRepository.RegisterUser(user);
         await _unityOfWork.Commit();
 
-        return new ResponseResgisteredUser
+        return new ResponseRegisteredUser
         {
             FirstName = user.FirstName,
             Tokens = new ResponseToken
