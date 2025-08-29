@@ -25,23 +25,28 @@ public class ExceptionFilter : IExceptionFilter
     private static void HandleProjectException(ExceptionContext context)
     {
         var responseError = new ResponseError().Errors;
-        if (context.Exception is InvalidLoginException)
+        switch (context.Exception)
         {
-            responseError.Add(context.Exception.Message);
-            context.HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            context.Result = new UnauthorizedObjectResult(responseError);
-        }
-        else if (context.Exception is NoPermission)
-        {
-            responseError.Add(context.Exception.Message);
-            context.HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
-            context.Result = new ForbidResult(responseError);
-        }
-        else if (context.Exception is ErrorOnValidationException exception)
-        {
-            responseError.Add(exception.ErrorMessages);
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(responseError);
+            case InvalidLoginException:
+                responseError.Add(context.Exception.Message);
+                context.HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                context.Result = new UnauthorizedObjectResult(responseError);
+                break;
+            case NoPermission:
+                responseError.Add(context.Exception.Message);
+                context.HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
+                context.Result = new UnauthorizedObjectResult(responseError);
+                break;
+            case ErrorOnValidationException exception:
+                responseError.Add(exception.ErrorMessages);
+                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Result = new BadRequestObjectResult(responseError);
+                break;
+            case NotFoundException notFoundException:
+                responseError.Add(notFoundException.Message);
+                context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
+                context.Result = new NotFoundObjectResult(responseError);
+                break;
         }
     }
 

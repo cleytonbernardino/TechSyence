@@ -202,4 +202,7 @@
   <data name="SID_CLAIM_NOT_FOUND" xml:space="preserve">
     <value>The user ID (Sid) claim was not found in the token.</value>
   </data>
+  <data name="USER_NOT_FOUND" xml:space="preserve">
+    <value>The user provided does not exist in our database.</value>
+  </data>
 </root>

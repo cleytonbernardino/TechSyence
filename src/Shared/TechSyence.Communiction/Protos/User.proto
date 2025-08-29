@@ -13,6 +13,18 @@ message RequestRegisterUser {
     int32 role = 6;
 }
 
+message RequestUpdateUser {
+    string user_id_to_update = 1;
+    string email = 2;
+    string phone = 3;
+    optional int32 role = 4;
+    optional string last_name = 5;
+}
+
+message RequestUpdateUserPassword {
+    string old_password = 1;
+    string new_password = 2;
+}
 
 message ResponseResgisteredUser {
     string first_name = 1;

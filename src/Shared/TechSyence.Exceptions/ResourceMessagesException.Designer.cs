@@ -311,5 +311,14 @@ namespace TechSyence.Exceptions {
                 return ResourceManager.GetString("USER_DOES_NOT_HAVE_PERMISSION", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The user provided does not exist in our database..
+        /// </summary>
+        public static string USER_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("USER_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }

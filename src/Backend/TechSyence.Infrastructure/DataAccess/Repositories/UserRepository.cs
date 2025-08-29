@@ -7,7 +7,7 @@ namespace TechSyence.Infrastructure.DataAccess.Repositories;
 
 internal class UserRepository(
     TechSyenceDbContext dbContext
-    ) : IUserReadOnlyRepository, IUserWriteOnlyRepository
+    ) : IUserReadOnlyRepository, IUserWriteOnlyRepository, IUserUpdateOnlyRepository
 {
     private readonly TechSyenceDbContext _dbContext = dbContext;
 
@@ -51,4 +51,12 @@ internal class UserRepository(
     }
 
     public async Task RegisterUser(User user) => await _dbContext.Users.AddAsync(user);
+
+    public void UpdateUser(User user) => _dbContext.Users.Update(user);
+
+    async Task<User?> IUserUpdateOnlyRepository.GetById(long id, long comapanyId) => await _dbContext.Users
+        .FirstOrDefaultAsync(user => 
+        user.Id == id && 
+        user.CompanyId ==  comapanyId
+        && user.Active);
 }

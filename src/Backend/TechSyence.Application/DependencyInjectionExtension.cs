@@ -24,6 +24,7 @@ public static class DependencyInjectionExtension
         service.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         service.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         service.AddScoped<IListCompanyUsersUseCase, ListCompanyUsersUseCase>();
+        service.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
         service.AddScoped<IReciverJsonUseCase, ReciverJsonUseCase>();
         service.AddScoped<IRegisterCompanyUseCase, RegisterCompanyUseCase>();
         service.AddScoped<IListCompaniesUseCase, ListCompaniesUseCase>();
