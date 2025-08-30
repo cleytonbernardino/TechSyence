@@ -31,6 +31,13 @@ public class TechSyenceClassFixture(
         return await _client.PutAsJsonAsync(method, request);
     }
 
+    protected async Task<HttpResponseMessage> DoDeleteAsync(string method, string token, string culture = "en")
+    {
+        ChangeRequestCulture(culture);
+        AuthorizeRequest(token);
+        return await _client.DeleteAsync(method);
+    }
+    
     private void AuthorizeRequest(string? token)
     {
         if (string.IsNullOrWhiteSpace(token))
