@@ -48,6 +48,6 @@ public class DeleteUserUseCase(
         if(rolesAllowed.Contains(user.Role) && (int)user.Role > (int)userToBeDeleted.Role)
             return;
 
-        throw new NoPermission();
+        throw new NoPermissionException();
     }
 }

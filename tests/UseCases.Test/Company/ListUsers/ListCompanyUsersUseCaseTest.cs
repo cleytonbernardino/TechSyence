@@ -40,7 +40,7 @@ public class ListCompanyUsersUseCaseTest
         var useCase = CreateUseCase(user);
         async Task act() => await useCase.Execute();
 
-        var errors = await act().ShouldThrowAsync<NoPermission>();
+        var errors = await act().ShouldThrowAsync<NoPermissionException>();
         errors.Message.ShouldBe(ResourceMessagesException.NO_PERMISSION);
     }
 

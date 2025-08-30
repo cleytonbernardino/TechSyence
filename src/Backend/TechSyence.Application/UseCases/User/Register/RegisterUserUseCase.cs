@@ -35,7 +35,7 @@ public class RegisterUserUseCase(
 
         bool canCreate = CanCreateUser(loggedUser, (UserRolesEnum)request.Role);
         if (!canCreate)
-            throw new NoPermission();
+            throw new NoPermissionException();
 
         await Validate(request);
 

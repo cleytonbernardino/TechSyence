@@ -32,7 +32,7 @@ public class ExceptionFilter : IExceptionFilter
                 context.HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
                 context.Result = new UnauthorizedObjectResult(responseError);
                 break;
-            case NoPermission:
+            case NoPermissionException:
                 responseError.Add(context.Exception.Message);
                 context.HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                 context.Result = new UnauthorizedObjectResult(responseError);

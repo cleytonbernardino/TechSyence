@@ -47,6 +47,6 @@ public class ListCompanyUsersUseCase(
 
         bool roleIsValid = validRoles.Any(role => loggedUser.Role == role);
         if (!roleIsValid)
-            throw new NoPermission();
+            throw new NoPermissionException();
     }
 }

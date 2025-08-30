@@ -70,7 +70,7 @@ public class RegisterUserUseCaseTest
         var useCase = CreateUseCase(user);
         async Task act() => await useCase.Execute(request);
 
-        await act().ShouldThrowAsync<NoPermission>();
+        await act().ShouldThrowAsync<NoPermissionException>();
     }
 
     [Fact]
@@ -85,7 +85,7 @@ public class RegisterUserUseCaseTest
         var useCase = CreateUseCase(user);
         async Task act() => await useCase.Execute(request);
 
-        await act().ShouldThrowAsync<NoPermission>();
+        await act().ShouldThrowAsync<NoPermissionException>();
     }
 
     private static RegisterUserUseCase CreateUseCase(Entity.User user, string? email = null)

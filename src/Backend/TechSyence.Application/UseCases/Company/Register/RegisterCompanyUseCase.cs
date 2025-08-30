@@ -25,7 +25,7 @@ public class RegisterCompanyUseCase(
         var loggedUser = await _loggedUser.User();
 
         if (loggedUser.IsAdmin == false)
-            throw new NoPermission();
+            throw new NoPermissionException();
 
         await Validator(request);
 

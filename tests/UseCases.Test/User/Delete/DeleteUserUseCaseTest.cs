@@ -33,7 +33,7 @@ public class DeleteUserUseCaseTest
         var useCase = CreateUseCase(user, 1);
         async Task act() => await useCase.Execute(1);
 
-        var errors = await act().ShouldThrowAsync<NoPermission>();
+        var errors = await act().ShouldThrowAsync<NoPermissionException>();
         errors.Message.ShouldBe(TechSyence.Exceptions.ResourceMessagesException.NO_PERMISSION);
     }
     

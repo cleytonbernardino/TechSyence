@@ -32,7 +32,7 @@ public class UpdateUserUseCase(
 
         bool canUpdate = CanUpdateUser(loggedUser, request.Role);
         if (!canUpdate)
-            throw new NoPermission();
+            throw new NoPermissionException();
 
         long userToUpdateId = _idEncoder.Decode(request.UserIdToUpdate);
         
