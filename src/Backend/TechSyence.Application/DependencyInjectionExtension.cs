@@ -5,6 +5,7 @@ using TechSyence.Application.UseCases.Company.List;
 using TechSyence.Application.UseCases.Company.ListUsers;
 using TechSyence.Application.UseCases.Company.Register;
 using TechSyence.Application.UseCases.Login;
+using TechSyence.Application.UseCases.User.Delete;
 using TechSyence.Application.UseCases.User.Register;
 using TechSyence.Application.UseCases.User.Update;
 using TechSyence.Application.UseCases.WhatsApp.ReciverJson;
@@ -25,6 +26,7 @@ public static class DependencyInjectionExtension
         service.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         service.AddScoped<IListCompanyUsersUseCase, ListCompanyUsersUseCase>();
         service.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
+        service.AddScoped<IDeleteUserUseCase, DeleteUserUseCase>();
         service.AddScoped<IReciverJsonUseCase, ReciverJsonUseCase>();
         service.AddScoped<IRegisterCompanyUseCase, RegisterCompanyUseCase>();
         service.AddScoped<IListCompaniesUseCase, ListCompaniesUseCase>();

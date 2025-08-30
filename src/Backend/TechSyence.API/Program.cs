@@ -36,6 +36,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(gen =>
 {
+    gen.OperationFilter<IdsFilter>();
     gen.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "TechSyence API",

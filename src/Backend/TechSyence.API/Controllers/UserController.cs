@@ -32,4 +32,14 @@ public class UserController : TechSyenceBaseController
         await useCase.Execute(request);
         return NoContent();
     }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdatePassword(
+        [FromBody] RequestUpdateUserPassword request,
+        [FromServices] IUpdateUserUseCase useCase
+        )
+    {
+        await useCase.Execute(request);
+        return NoContent();
+    }
 }
