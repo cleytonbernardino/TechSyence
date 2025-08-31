@@ -15,4 +15,10 @@ public class UserUpdateOnlyRepositoryBuilder
         _mock.Setup(rep => rep.GetById(userIdToMock, mockUserReturn.CompanyId)).ReturnsAsync(mockUserReturn);
         return this;
     }
+
+    public UserUpdateOnlyRepositoryBuilder GetUserByEmailAndPassword(Entity.User user, string password)
+    {
+        _mock.Setup(rep => rep.GetUserByEmailAndPassword(user.Email, password)).ReturnsAsync(user);
+        return this;
+    }
 }

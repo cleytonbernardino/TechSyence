@@ -55,7 +55,7 @@ public class UpdateUserUseCaseTest
         var userCase = CreateUseCase(user, request.UserIdToUpdate);
         async Task act() => await userCase.Execute(request);
 
-        var errors = await act().ShouldThrowAsync<NoPermission>();
+        var errors = await act().ShouldThrowAsync<NoPermissionException>();
         errors.Message.ShouldBe(ResourceMessagesException.NO_PERMISSION);
     }
 
@@ -71,7 +71,7 @@ public class UpdateUserUseCaseTest
         var userCase = CreateUseCase(user, request.UserIdToUpdate);
         async Task act() => await userCase.Execute(request);
 
-        var errors = await act().ShouldThrowAsync<NoPermission>();
+        var errors = await act().ShouldThrowAsync<NoPermissionException>();
         errors.Message.ShouldBe(ResourceMessagesException.NO_PERMISSION);
     }
 

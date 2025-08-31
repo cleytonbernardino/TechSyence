@@ -80,10 +80,10 @@ public class TechSyenceClassFixture(
     /// It will throw a <see cref="KeyNotFoundException"/> if the property does not exist.
     /// Consider adding validation with <c>TryGetProperty</c> to avoid exceptions.
     /// </remarks>
-    protected static async Task<JsonElement.ArrayEnumerator> GetArrayFromResponse(HttpResponseMessage response)
+    protected static async Task<JsonElement.ArrayEnumerator> GetArrayFromResponse(HttpResponseMessage response, string key = "errors")
     {
         var jsonElement = await GetRootElement(response);
-        return jsonElement.EnumerateArray();
+        return jsonElement.GetProperty(key).EnumerateArray();
     }
 
     private void ChangeRequestCulture(string culture)
