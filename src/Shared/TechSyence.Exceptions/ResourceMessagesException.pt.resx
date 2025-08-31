@@ -127,7 +127,7 @@
     <value>A senha não pode está vazia.</value>
   </data>
   <data name="PASSWORD_EMPTY" xml:space="preserve">
-    <value>Telefone não pode está vazio.</value>
+    <value>A senha não pode está vazia.</value>
   </data>
   <data name="PASSWORD_LENGTH_IS_INVALID" xml:space="preserve">
     <value>Tamanho da senha é invalido.</value>
@@ -203,5 +203,8 @@
   </data>
   <data name="USER_NOT_FOUND" xml:space="preserve">
     <value>O usuário informado não existem em nosso banco de dado.</value>
+  </data>
+  <data name="CURRENT_PASSWORD_INCORRECT" xml:space="preserve">
+    <value>A senha atual está incorreta.</value>
   </data>
 </root>

@@ -40,16 +40,23 @@ internal class UserRepository(
             .AsNoTracking()
             .FirstOrDefaultAsync(user => user.Email == email && user.Active == true);
 
-        if (user is not null)
-        {
-            bool isValid = new Argon2Encripter().VerifyPassword(password: password, hashedPassword: user.Password);
-            if (isValid == false)
-                return null;
-        }
-
-        return user;
+        var isValidPassword = ValidPassword(password, user);
+        if (isValidPassword)
+            return user;
+        return null;
     }
 
+    async Task<User?> IUserUpdateOnlyRepository.GetUserByEmailAndPassword(string email, string password)
+    {
+        var user = await _dbContext.Users
+            .FirstOrDefaultAsync(user => user.Email == email && user.Active == true);
+        
+        var isValidPassword = ValidPassword(password, user);
+        if (isValidPassword)
+            return user;
+        return null;
+    }
+    
     public async Task RegisterUser(User user) => await _dbContext.Users.AddAsync(user);
 
     public void UpdateUser(User user) => _dbContext.Users.Update(user);
@@ -59,4 +66,12 @@ internal class UserRepository(
         user.Id == id && 
         user.CompanyId ==  comapanyId
         && user.Active);
+
+    private static bool ValidPassword(string password, User? user)
+    {
+        if (user is null)
+            return false;
+        
+        return new Argon2Encripter().VerifyPassword(password: password, hashedPassword: user.Password);
+    }
 }

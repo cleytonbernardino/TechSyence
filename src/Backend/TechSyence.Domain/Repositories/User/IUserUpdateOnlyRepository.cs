@@ -2,6 +2,7 @@
 
 public interface IUserUpdateOnlyRepository
 {
-    Task<Entities.User?> GetById(long id, long comapanyId);
+    Task<Entities.User?> GetById(long id, long companyId);
+    Task<Entities.User?> GetUserByEmailAndPassword(string email, string password);
     void UpdateUser(Entities.User user);
 }

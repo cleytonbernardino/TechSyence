@@ -13,7 +13,7 @@ public class Version0000004 : VersionBase
             .WithColumn("LastLogin").AsDateTime().NotNullable()
             .WithColumn("UserIndentifier").AsGuid().NotNullable()
             .WithColumn("Email").AsString().NotNullable().Unique()
-            .WithColumn("Phone").AsString(13).NotNullable().Unique()
+            .WithColumn("Phone").AsString(13).NotNullable()
             .WithColumn("FirstName").AsString(40).NotNullable()
             .WithColumn("LastName").AsString(50).Nullable()
             .WithColumn("Password").AsString().NotNullable()

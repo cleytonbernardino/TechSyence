@@ -127,7 +127,7 @@
     <value>Password cannot be empty.</value>
   </data>
   <data name="PASSWORD_EMPTY" xml:space="preserve">
-    <value>Phone cannot be empty.</value>
+    <value>Password cannot be empty</value>
   </data>
   <data name="PASSWORD_LENGTH_IS_INVALID" xml:space="preserve">
     <value>Password length is invalid.</value>
@@ -204,5 +204,8 @@
   </data>
   <data name="USER_NOT_FOUND" xml:space="preserve">
     <value>The user provided does not exist in our database.</value>
+  </data>
+  <data name="CURRENT_PASSWORD_INCORRECT" xml:space="preserve">
+    <value>Current password is incorrect.</value>
   </data>
 </root>

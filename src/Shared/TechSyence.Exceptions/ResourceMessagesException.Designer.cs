@@ -231,7 +231,7 @@ namespace TechSyence.Exceptions {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone cannot be empty..
+        ///   Looks up a localized string similar to Password cannot be empty.
         /// </summary>
         public static string PASSWORD_EMPTY {
             get {
